@@ -13,19 +13,17 @@ int main(int argc, char *argv[])
 
     pipe(fd);
 
-    switch(fork()) {
-    case -1:
+    int rc = fork();
+    if (rc < 0) {
         perror("pipe");
 	exit(1);
-    case 0:
-        /* child */
+    } else if (rc == 0) {
         /* should I close here? */
 	for (int i = 0; i < iterations; i++) {
             read(fd[0], NULL, 0);
             write(fd[1], NULL, 0);
 	}
-    default:
-	/* parent */
+    } else {
         gettimeofday(&st, NULL);
 	for (int i = 0; i < iterations; i++) {
 	    write(fd[1], NULL, 0);
@@ -38,13 +36,10 @@ int main(int argc, char *argv[])
 	float avg_time_in_micros = total_time_in_micros / iterations;
 	printf("total time in microseconds: %f\n", total_time_in_micros);
 	printf("avg time in microseconds: %.5f\n", avg_time_in_micros);
-        break;
     }
-    /* output (all from same run):
-     * total time in microseconds: 16627874.000000
-     * avg time in microseconds: 1.66279
-     * total time in microseconds: 8195315.000000
-     * avg time in microseconds: 0.81953 */
+    /* output:
+     * total time in microseconds: 16364236.000000
+     * avg time in microseconds: 1.63642 */
 
     return 0;
 }
