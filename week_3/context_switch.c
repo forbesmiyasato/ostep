@@ -40,5 +40,11 @@ int main(int argc, char *argv[])
 	printf("avg time in microseconds: %.5f\n", avg_time_in_micros);
         break;
     }
+    /* output (all from same run):
+     * total time in microseconds: 16627874.000000
+     * avg time in microseconds: 1.66279
+     * total time in microseconds: 8195315.000000
+     * avg time in microseconds: 0.81953 */
+
     return 0;
 }
