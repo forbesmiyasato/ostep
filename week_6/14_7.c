@@ -6,9 +6,9 @@ int main(int argc, char *argv[]) {
   
   data[50] = 10;
 
-	printf("%d", data[50]);
+  printf("%d", data[50]);
   
-	free(&data[50]);
+  free(&data[50]);
 
   printf("%d", data[50]);
 
