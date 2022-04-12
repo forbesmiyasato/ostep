@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 int main(int argc, char *argv[]) {
-  int *data = malloc(100 * sizeof(int));
+	int *data = malloc(100 * sizeof(int));
 	data[0] = 1;
 	data[100] = 0;
 
